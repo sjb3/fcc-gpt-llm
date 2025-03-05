@@ -1,5 +1,7 @@
 
 ## After creating the working folder,
+### https://www.youtube.com/watch?v=UU1WVnMk4E8&list=LL&index=42&t=8760s
+
 
 1. create virtual env
     $ python3 -m venv VirtualEnv(creating virtual env of your own)
