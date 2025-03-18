@@ -4,7 +4,7 @@
 
 
 1. create virtual env
-    $ python3 -m venv VirtualEnv(creating virtual env of your own)
+    $ python3 -m venv VirtualEnv (creating virtual env of your own)
     - 'VirtualEnv' is just  arbitrary name
 
 2. activate env
