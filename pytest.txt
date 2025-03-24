@@ -1,0 +1,186 @@
+Here's a general overview of the `pytest` framework, including how to use it and structure your tests:
+
+### 1. **Installation**
+To install `pytest`, you can use `pip`:
+
+```bash
+pip install pytest
+```
+
+### 2. **Basic Structure of a Test**
+A test file usually starts with `test_` and includes test functions that also begin with `test_`.
+
+```python
+# test_example.py
+
+def test_addition():
+    assert 1 + 1 == 2
+
+def test_subtraction():
+    assert 5 - 3 == 2
+```
+
+### 3. **Running Tests**
+Once you've written your test cases, you can run the tests with:
+
+```bash
+pytest
+```
+
+By default, pytest will automatically find any files that start with `test_` or end with `_test.py` and execute the test functions inside them.
+
+### 4. **Assertions**
+`pytest` uses Python's built-in `assert` statement for verifying test conditions.
+
+```python
+def test_multiplication():
+    assert 3 * 4 == 12
+```
+
+If the assertion fails, `pytest` will display a helpful message showing the expected and actual values.
+
+### 5. **Fixtures**
+Fixtures are functions that set up the context for tests, such as creating necessary objects or setting state.
+
+```python
+import pytest
+
+@pytest.fixture
+def sample_data():
+    return {'key': 'value'}
+
+def test_using_fixture(sample_data):
+    assert sample_data['key'] == 'value'
+```
+
+In this example, `sample_data` is a fixture that provides test data for the `test_using_fixture` test.
+
+### 6. **Parametrize**
+You can run the same test with different data using `pytest.mark.parametrize`.
+
+```python
+import pytest
+
+@pytest.mark.parametrize("a,b,result", [(1, 2, 3), (4, 5, 9), (0, 0, 0)])
+def test_addition(a, b, result):
+    assert a + b == result
+```
+
+This will run the `test_addition` three times, each time with different parameters.
+
+### 7. **Test Discovery**
+`pytest` will automatically discover tests based on the file and function names. For example:
+
+- It will look for files that start with `test_` or end with `_test.py`.
+- It will look for functions that start with `test_`.
+
+### 8. **Test Output and Verbosity**
+You can increase verbosity to see more detailed test results.
+
+```bash
+pytest -v
+```
+
+To show only failed tests, use:
+
+```bash
+pytest -q --tb=short
+```
+
+This minimizes the output but shows more concise information about the failure.
+
+### 9. **Handling Exceptions**
+If you want to test that an exception is raised, you can use `pytest.raises`.
+
+```python
+import pytest
+
+def test_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0
+```
+
+This checks if dividing by zero raises a `ZeroDivisionError`.
+
+### 10. **Skipping Tests**
+You can skip tests or mark them to be run conditionally.
+
+```python
+import pytest
+
+@pytest.mark.skip(reason="This test is skipped")
+def test_skipped():
+    assert 1 == 2
+```
+
+You can also skip tests dynamically using `pytest.mark.skipif`.
+
+```python
+@pytest.mark.skipif(condition=True, reason="Skipped due to condition")
+def test_skipped_if():
+    assert 1 == 1
+```
+
+### 11. **Grouping Tests (Class-based Tests)**
+You can group tests in classes.
+
+```python
+class TestMathOperations:
+    
+    def test_addition(self):
+        assert 1 + 1 == 2
+
+    def test_subtraction(self):
+        assert 5 - 3 == 2
+```
+
+### 12. **Command-Line Options**
+`pytest` comes with several command-line options, including:
+
+- `-v` for verbose output.
+- `-q` for quiet output.
+- `--maxfail=n` to stop after `n` failures.
+- `--disable-warnings` to disable warning messages.
+
+For example, to run tests quietly and stop after the first failure, use:
+
+```bash
+pytest -q --maxfail=1
+```
+
+### Example Project Structure
+
+```
+my_project/
+├── test_example.py
+├── example.py
+├── requirements.txt
+└── README.md
+```
+
+- `test_example.py` contains the test cases.
+- `example.py` contains the logic being tested.
+
+### Conclusion
+`pytest` is a powerful, easy-to-use framework for testing Python code. It simplifies the process of writing and running tests, handling exceptions, using fixtures, and generating useful output. Whether you are writing unit tests, integration tests, or functional tests, `pytest` can handle it with ease.
+
+Let me know if you need further details on any specific aspect!
+
+===============================================================
+                        Test Layouts
+===============================================================
+
+> directory starts with tests
+
+- from tests, you can add anything like unit, functional or other meaningful names like database
+
+- files need to be pre-fixed with test_
+
+- test functions need to be prefixed with test_
+
+- test classes need to be prefixed with Test
+
+===============================================================
+                        Testing convention
+===============================================================
+
